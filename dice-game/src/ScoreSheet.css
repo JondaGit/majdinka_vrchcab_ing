@@ -1,0 +1,155 @@
+.score-sheet {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section {
+  margin-bottom: 1.5rem;
+}
+
+.section h3 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.section-description {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.categories-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.score-cell {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: #f5f5f5;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  cursor: not-allowed;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  touch-action: manipulation;
+  font-family: inherit;
+}
+
+.score-cell.available {
+  cursor: pointer;
+  background: white;
+  border-color: #4CAF50;
+}
+
+.score-cell.available:hover {
+  background: #f0f8f0;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2);
+}
+
+.score-cell.available:active {
+  transform: translateY(0);
+}
+
+.score-cell.filled {
+  background: #e8e8e8;
+  border-color: #999;
+}
+
+.score-cell.selected {
+  background: #fff3cd !important;
+  border-color: #ff9800 !important;
+  border-width: 3px !important;
+  box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.2);
+}
+
+.label {
+  font-weight: 600;
+  color: #333;
+  pointer-events: none;
+}
+
+.value {
+  font-weight: 700;
+  color: #4CAF50;
+  min-width: 60px;
+  text-align: right;
+  position: relative;
+  pointer-events: none;
+}
+
+.preview {
+  position: absolute;
+  right: 0;
+  top: -20px;
+  font-size: 0.85rem;
+  color: #666;
+  background: #fff3cd;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.bonus-display {
+  padding: 0.75rem;
+  background: #4CAF50;
+  color: white;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.bonus-hint {
+  padding: 0.5rem;
+  background: #fff3cd;
+  color: #856404;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.total-score {
+  padding: 1rem;
+  background: #333;
+  color: white;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+@media (max-width: 768px) {
+  .score-sheet {
+    padding: 0.75rem;
+  }
+
+  .section h3 {
+    font-size: 1.1rem;
+  }
+
+  .score-cell {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .total-score {
+    font-size: 1.2rem;
+  }
+}
