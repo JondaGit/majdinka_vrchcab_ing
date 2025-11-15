@@ -54,18 +54,31 @@ export function calculateCategoryScore(dice, category) {
 
     case 'twoPairs': {
       const pairs = values.filter(v => counts[v] >= 2);
+      // Akceptovat buď 2 různé dvojice, nebo 4 stejné (které obsahují dvě dvojice)
       if (pairs.length >= 2) {
+        // 2 různé dvojice
         pairs.sort((a, b) => b - a);
         return pairs[0] * 2 + pairs[1] * 2;
+      } else if (pairs.length === 1 && counts[pairs[0]] >= 4) {
+        // 4 stejné = dvě dvojice
+        return pairs[0] * 4;
       }
       return 0;
     }
 
     case 'fullHouse': {
-      const hasThree = countsArray.some(c => c >= 3);
-      const hasTwo = countsArray.some(c => c >= 2);
-      if (hasThree && countsArray.filter(c => c >= 2).length >= 1) {
-        return dice.reduce((sum, d) => sum + d, 0);
+      // Full house = 3 jednoho čísla + 2 jiného čísla, nebo 5 stejných
+      const threeValue = values.find(v => counts[v] >= 3);
+      if (threeValue) {
+        // Pokud máme 5 stejných, je to validní full house
+        if (counts[threeValue] === 5) {
+          return dice.reduce((sum, d) => sum + d, 0);
+        }
+        // Jinak musí existovat jiné číslo s minimálně 2
+        const pairValue = values.find(v => v !== threeValue && counts[v] >= 2);
+        if (pairValue) {
+          return dice.reduce((sum, d) => sum + d, 0);
+        }
       }
       return 0;
     }
