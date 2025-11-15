@@ -26,18 +26,30 @@ export function calculateCategoryScore(dice, category) {
 
   switch(category) {
     case 'pair': {
-      const pair = values.find(v => counts[v] >= 2);
-      return pair ? pair * 2 : 0;
+      const pairs = values.filter(v => counts[v] >= 2);
+      if (pairs.length > 0) {
+        const maxPair = Math.max(...pairs);
+        return maxPair * 2;
+      }
+      return 0;
     }
 
     case 'three': {
-      const three = values.find(v => counts[v] >= 3);
-      return three ? three * 3 : 0;
+      const threes = values.filter(v => counts[v] >= 3);
+      if (threes.length > 0) {
+        const maxThree = Math.max(...threes);
+        return maxThree * 3;
+      }
+      return 0;
     }
 
     case 'four': {
-      const four = values.find(v => counts[v] >= 4);
-      return four ? four * 4 : 0;
+      const fours = values.filter(v => counts[v] >= 4);
+      if (fours.length > 0) {
+        const maxFour = Math.max(...fours);
+        return maxFour * 4;
+      }
+      return 0;
     }
 
     case 'twoPairs': {
